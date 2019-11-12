@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/theming';
+@include mat-core();
+@import './themes/main-theme.scss';
+//* Components
+@import './app/auth/login/login.component.scss-theme.scss';
+@import './app/users/new-user/new-user.component-theme.scss';
+@mixin my-components-theme($theme) {
+    @include app-login($theme);
+    @include app-new-user($theme);
+}
+
+//* Aplying theme
+@include angular-material-theme($my-theme);
+@include my-components-theme($my-theme);

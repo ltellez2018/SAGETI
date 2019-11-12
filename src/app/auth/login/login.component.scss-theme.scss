@@ -1,0 +1,19 @@
+@import '~@angular/material/theming';
+@mixin app-login ($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+    body {
+        background: mat-color($primary, 50);
+    }
+    // * app-parent theme
+    app-login {
+        mat-card {
+            mat-card-header {
+                background: mat-color($primary);
+            }
+        }
+    }
+}

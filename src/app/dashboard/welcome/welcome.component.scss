@@ -1,0 +1,17 @@
+body {
+    background: white;
+}
+
+.users {
+    background-image: url('../../../assets/images/people.png');
+    background-size: cover;
+}
+
+.events {
+    background-image: url('../../../assets/images/event.png');
+    background-size: cover;
+}
+
+mat-card {
+    cursor: pointer;
+}

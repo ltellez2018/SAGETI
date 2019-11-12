@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+@mixin app-new-user ($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+    // * app-parent theme
+    app-new-user {
+        mat-card {
+            mat-card-header {
+                background: mat-color($primary);
+            }
+        }
+    }
+}

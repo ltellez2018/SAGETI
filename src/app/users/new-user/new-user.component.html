@@ -1,0 +1,77 @@
+<section fxLayout fxLayoutAlign="center center ">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>New User</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+
+                <section fxLayout fxLayoutGap="5%">
+                    <mat-form-field appearance="outline" fxFlex="50%">
+                        <mat-label>First Name</mat-label>
+                        <input matInput placeholder="First name" required formControlName="firstName">
+                        <mat-error>Mandatory field</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" fxFlex="45%">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput placeholder="Last name" required formControlName="lastName">
+                        <mat-error>Mandatory field</mat-error>
+                    </mat-form-field>
+                </section>
+
+
+                <div class="divTest2" fxLayout>
+                    <mat-form-field appearance="outline" fxFlex="50%">
+                        <mat-label>Name(s)</mat-label>
+                        <input matInput placeholder="Name(s)" required formControlName="name">
+                        <mat-error>Mandatory field</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout fxLayoutGap="5%">
+                    <mat-form-field appearance="outline" fxFlex="70%">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Email" required formControlName="email">
+                        <mat-error>Mandatory field</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" fxFlex="25%">
+                        <mat-label>Key</mat-label>
+                        <input matInput placeholder="Key" required formControlName="key">
+                        <mat-error>Mandatory field</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout>
+                    <mat-form-field fxFlex="70%" appearance="outline">
+                        <mat-label>Profile</mat-label>
+                        <mat-select required formControlName="profile">
+                            <mat-option value="Bussness Administrator">Bussness Administrator</mat-option>
+                            <mat-option value="System Administrator">System Administrator</mat-option>
+                            <mat-option value="User">User</mat-option>
+                            <mat-option value="Provider">Provider</mat-option>
+                        </mat-select>
+                        <mat-error>Mandatory field</mat-error>
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+            <mat-divider mat-inset></mat-divider>
+            <div class="bt-fotter" fxLayout fxLayoutGap="5%">
+                <button mat-raised-button color="primary" fxFlex="50%" [disabled]="userForm.invalid">
+                    Save<mat-icon >    check_circle_outline </mat-icon>
+                </button>
+                <button type="reset" mat-raised-button color="accent" fxFlex="50%">
+                        Reset<mat-icon>    cancel </mat-icon>
+                    </button>
+            </div>
+        </mat-card>
+    </form>
+</section>
+<br>
+
+
+<section>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</section>

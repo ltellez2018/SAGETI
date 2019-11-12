@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+
+    <!-- Toggle button -->
+    <div fxHide.gt-xs>
+        <button mat-icon-button (click)="onToggleSidenav()">
+            <mat-icon>menu</mat-icon>
+          </button>
+    </div>
+
+    <!-- Home button -->
+    <button mat-button routerLink="/dashboard">App Name</button>
+    <!-- Logout button -->
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+            <li>
+                <button routerLink="/dashboard/users" mat-button>Users</button>
+            </li>
+            <li>
+                <button mat-mini-fab style="cursor: pointer" matTooltip="Logout" (click)="onLogout()">
+                	<mat-icon>exit_to_app</mat-icon>
+                </button>
+            </li>
+        </ul>
+    </div>
+</mat-toolbar>
