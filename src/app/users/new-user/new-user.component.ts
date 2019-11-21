@@ -36,7 +36,8 @@ export class NewUserComponent implements OnInit {
       name:  this.userForm.value.name,
       email:  this.userForm.value.email,
       key:  this.userForm.value.key,
-      profile:  this.userForm.value.profile
+      profile:  this.userForm.value.profile,
+      date: new Date()
     });
    }
 

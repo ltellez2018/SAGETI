@@ -1,0 +1,120 @@
+<mat-horizontal-stepper labelPosition="bottom" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>General Information</ng-template>
+
+            <mat-card>
+                <mat-card-content>
+
+                    <div fxLayout="row" fxLayoutGap="4%">
+                        <mat-form-field fxFlex="48%">
+                            <mat-label>Title</mat-label>
+                            <input matInput placeholder="Title" formControlName="title" required>
+                            <mat-hint><strong>Please enter a name</strong></mat-hint>
+                            <mat-error>Mandatory field</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="48%">
+                            <mat-label>Subjet</mat-label>
+                            <input matInput placeholder="Subject" #subject maxlength="100" formControlName="subject" required>
+                            <mat-hint align="start"><strong>Description</strong> </mat-hint>
+                            <mat-hint align="end">{{subject.value.length}} / 100</mat-hint>
+                            <mat-error>Mandatory field</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <br>
+
+                    <div fxLayout="row" fxLayoutGap="4%">
+
+                        <div fxFlex="48%" fxLayoutGap="4%">
+                            <mat-form-field fxFlex="48%">
+                                <mat-label>Kind of event</mat-label>
+                                <mat-select required>
+                                    <mat-option value="Birthday">Birthday</mat-option>
+                                    <mat-option value="Ceremony">Ceremony</mat-option>
+                                    <mat-option value="Kick off">Kick off</mat-option>
+                                    <mat-option value="Project">Project</mat-option>
+                                    <mat-option value="Other">Other</mat-option>
+                                </mat-select>
+                                <mat-error>Mandatory field</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="48%">
+                                <input matInput #message maxlength="25" placeholder="What kind of events you want?" required>
+                                <mat-hint align="start"><strong>Just name</strong> </mat-hint>
+                                <mat-hint align="end">{{message.value.length}} / 25</mat-hint>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="48%" fxLayoutGap="4%">
+                            <mat-form-field fxFlex="46%">
+                                <input matInput [matDatepicker]="picker" placeholder="Celebration Day " required>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="23%">
+                                <mat-label>Starting time</mat-label>
+                                <input matInput placeholder="Title" autocomplete="off" placeholder="Starting time " (click)="onClicTimeStart()" [type]="typeInputTimeStart" required>
+                                <mat-error>Mandatory field</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="23%">
+                                <mat-label>Ending time</mat-label>
+                                <input matInput placeholder="Title" autocomplete="off" placeholder="Ending time  " (click)="onClicTimeEnding()" [type]="typeInputTimeEnding" required>
+                                <mat-error>Mandatory field</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <br>
+                    <div fxLayout="row" fxLayoutGap="4%">
+                        <mat-form-field fxFlex="48%">
+                            <mat-label>Celebretaion Place</mat-label>
+                            <mat-select required>
+                                <mat-option value="Bussness Administrator">CDMX</mat-option>
+                                <mat-option value="New York">New York</mat-option>
+                                <mat-option value="Paris">Paris</mat-option>
+                                <mat-option value="London">London</mat-option>
+                                <mat-option value="Tokio">Tokio</mat-option>
+                            </mat-select>
+                            <mat-error>Mandatory field</mat-error>
+                        </mat-form-field>
+                    </div>
+
+
+                </mat-card-content>
+                <mat-divider></mat-divider>
+                <mat-card-actions>
+                    <button mat-raised-button color="accent" matStepperNext>Next Step</button>
+                </mat-card-actions>
+            </mat-card>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup ">
+        <form [formGroup]="secondFormGroup ">
+            <ng-template matStepLabel>Place to celebrate</ng-template>
+            <mat-form-field>
+                <input matInput placeholder="Address" formControlName="secondCtrl" required>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done.
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset() ">Reset</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>
+
+<!-- <mat-form-field fxFlex="50% ">
+        <mat-label>Register day</mat-label>
+        <input matInput [matDatepicker]="dp1 " placeholder="Register day " disabled>
+        <mat-datepicker-toggle matSuffix [for]="dp1 "></mat-datepicker-toggle>
+        <mat-datepicker #dp1></mat-datepicker>
+    </mat-form-field> -->

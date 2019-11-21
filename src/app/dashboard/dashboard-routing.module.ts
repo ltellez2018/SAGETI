@@ -11,6 +11,7 @@ const routes: Routes = [
         children: [
               { path: '', component: WelcomeComponent, data: { title: 'App - Home' } },
               { path: 'users', loadChildren: () => import('../users/users.module').then(m => m.UsersModule)},
+              { path: 'events', loadChildren: () => import('../events/events.module').then(m => m.EventsModule)},
        ]
     }
 ];

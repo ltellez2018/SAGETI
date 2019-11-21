@@ -5,9 +5,9 @@
                 <mat-card-title>New User</mat-card-title>
             </mat-card-header>
 
-            <mat-card-content>
+            <mat-card-content fxLayout="column" fxLayoutGap="-5%">
 
-                <section fxLayout fxLayoutGap="5%">
+                <div fxLayout fxLayoutGap="5%" style="padding-top: 5%">
                     <mat-form-field appearance="outline" fxFlex="50%">
                         <mat-label>First Name</mat-label>
                         <input matInput placeholder="First name" required formControlName="firstName">
@@ -18,7 +18,7 @@
                         <input matInput placeholder="Last name" required formControlName="lastName">
                         <mat-error>Mandatory field</mat-error>
                     </mat-form-field>
-                </section>
+                </div>
 
 
                 <div class="divTest2" fxLayout>
@@ -54,8 +54,8 @@
                         <mat-error>Mandatory field</mat-error>
                     </mat-form-field>
                 </div>
+                <mat-divider mat-inset></mat-divider>
             </mat-card-content>
-            <mat-divider mat-inset></mat-divider>
             <div class="bt-fotter" fxLayout fxLayoutGap="5%">
                 <button mat-raised-button color="primary" fxFlex="50%" [disabled]="userForm.invalid">
                     Save<mat-icon >    check_circle_outline </mat-icon>
@@ -68,10 +68,3 @@
     </form>
 </section>
 <br>
-
-
-<section>
-    <div>1</div>
-    <div>2</div>
-    <div>3</div>
-</section>

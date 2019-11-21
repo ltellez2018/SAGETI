@@ -1,9 +1,9 @@
 <section>
     <div fxLayout="column" fxLayoutAlign="space-between center" fxLayoutGap="10px">
-        <div>
+        <div style="padding-top: 20px;padding-bottom: 0px; margin-bottom: 0px;">
             <h1 class="mat-display-1">Welcome to the SAGETI.</h1>
         </div>
-        <div>
+        <div style="padding-top: 0px;">
             <h3 class="mat-h3">You can manage and control your events, as well as the money allocated to your administration</h3>
         </div>
     </div>
@@ -21,7 +21,7 @@
             </mat-card-header>
         </mat-card>
         <br>
-        <mat-card fxFlex.gt-md="35%">
+        <mat-card (click)="goEvents()" fxFlex.gt-md="35%">
             <mat-card-header>
                 <div mat-card-avatar class="events"></div>
                 <mat-card-title>Events</mat-card-title>

@@ -1,0 +1,20 @@
+<section>
+    <mat-card fxLayout.gt-md=”row” fxLayoutGap.gt-md="20%">
+        <mat-card-header>
+            <mat-card-title>Events</mat-card-title>
+            <mat-card-subtitle>You could perform the following actions</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <br>
+            <mat-chip-list>
+                <mat-chip selected routerLink="/dashboard/events/addEvent" color="primary">Add</mat-chip>
+                <mat-chip selected routerLink="/dashboard/events/searchEvent" color="primary">Find </mat-chip>
+                <mat-chip selected routerLink="/dashboard/events/adminEvent" color="primary">Admin </mat-chip>
+                <mat-chip selected color="primary">Stadistics </mat-chip>
+            </mat-chip-list>
+        </mat-card-content>
+    </mat-card>
+</section>
+<mat-divider></mat-divider>
+<br>
+<router-outlet></router-outlet>

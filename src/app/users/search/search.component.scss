@@ -1,0 +1,16 @@
+/* mat-card-header mat-card-subtitle {
+    color: white
+} */
+
+mat-card mat-card-header mat-card-subtitle {
+    color: white;
+    padding-top: 10%;
+}
+
+.mat-cell-style {
+    cursor: pointer;
+}
+
+.mat-row:nth-child(odd) {
+    background-color: rgb(219, 219, 223)
+}

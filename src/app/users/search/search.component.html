@@ -1,15 +1,139 @@
-<section>
-    <div fxLayout fxLayoutAlign="space-start">
+<section #scrollBottom style="height: 100%;">
 
-        <mat-form-field fxFlexOffset="20%">
-            <mat-label>Search a users</mat-label>
-            <input type="search" matInput placeholder="Just fill...">
-        </mat-form-field>
 
+    <div fxLayoutAlign="center center" fxLayout="column" *ngIf="isloading">
+        <mat-progress-spinner color="accent" mode="indeterminate"></mat-progress-spinner>
+    </div>
+    <div fxLayout="row">
+        <div fxFlex="79%" fxFlexOffset="21%">
+            <mat-slide-toggle class="example-margin" (toggleChange)="changeToggle()" [checked]="isEditable" color="accent">
+                Edit selection
+            </mat-slide-toggle>
+        </div>
     </div>
     <br>
-    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
-        <div style=" background-color: burlywood; " fxFlex="70%">Table Seccion</div>
-        <div style="background-color: gray; " fxFlex>User detail</div>
+    <div fxLayoutAlign="center center" fxLayout="row" fxLayoutGap="10px ">
+        <div fxFlex="20%" fxFlexAlign="start">
+            <mat-form-field>
+                <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
+        </div>
+        <mat-card fxFlex="80%">
+            <mat-card-header>
+                <mat-card-subtitle>
+                    Users List
+                    <button mat-mini-fab style="cursor: pointer" matTooltip="Exporting list" (click)="exportUsers()">
+                        <mat-icon>import_contacts</mat-icon>
+                    </button>
+                </mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content #TABLE>
+                <table mat-table [dataSource]="dataSource" matSort class="mat-cell-style" fxFlex="100%">
+                    <ng-container matColumnDef="firstName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+                        <td style="width: max-content;" mat-cell class="mat-cell-style" *matCellDef="let element">{{ element.firstName}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="lastName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+                        <td mat-cell class="mat-cell-style" *matCellDef="let element">{{ element.lastName }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name(s)</th>
+                        <td mat-cell class="mat-cell-style" *matCellDef="let element">{{ element.name}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+                        <td mat-cell class="mat-cell-style" *matCellDef="let element">{{ element.email}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="key">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>key</th>
+                        <td mat-cell class="mat-cell-style" *matCellDef="let element">{{ element.key }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="profile">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>profile</th>
+                        <td mat-cell class="mat-cell-style" *matCellDef="let element">{{ element.profile }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>date</th>
+                        <td mat-cell class="mat-cell-style" *matCellDef="let element">{{ element.date.toDate() | date }}</td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns" style="scroll-padding-bottom: 10px;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)"></tr>>
+                </table>
+            </mat-card-content>
+
+            <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
+            </mat-paginator>
+
+
+        </mat-card>
     </div>
+    <br>
+
+    <!-- * Edit Table -->
+    <div *ngIf="isEditable">
+        <form *ngIf="user != null" [formGroup]="userForm" fxFlex="79%" fxFlexOffset="21%" (ngSubmit)="updateUser()">
+            <mat-card>
+                <mat-card-header style="padding-top: 10px;">
+                    <mat-card-subtitle>Editing User</mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content style="padding-top: 10px;" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center">
+                    <mat-form-field fxFlex="13%">
+                        <mat-label>First Name</mat-label>
+                        <input matInput placeholder="First name" required formControlName="firstName">
+                        <mat-error>Mandatory field</mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="13%">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput placeholder="Last name" required formControlName="lastName">
+                        <mat-error>Mandatory field</mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="20%">
+                        <mat-label>Name(s)</mat-label>
+                        <input matInput placeholder="Name(s)" required formControlName="name">
+                        <mat-error>Mandatory field</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="24%">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Email" required formControlName="email">
+                        <mat-error>Mandatory field</mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="8%">
+                        <mat-label>Key</mat-label>
+                        <input matInput placeholder="Key" required formControlName="key">
+                        <mat-error>Mandatory field</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="19%">
+                        <mat-label>Profile</mat-label>
+                        <mat-select required formControlName="profile">
+                            <mat-option value="Bussness Administrator">Bussness Administrator</mat-option>
+                            <mat-option value="System Administrator">System Administrator</mat-option>
+                            <mat-option value="User">User</mat-option>
+                            <mat-option value="Provider">Provider</mat-option>
+                        </mat-select>
+                        <mat-error>Mandatory field</mat-error>
+                    </mat-form-field>
+                </mat-card-content>
+                <div fxLayout="row" fxLayoutAlign="space-between center" style="padding-top: 0px; ">
+                    <button mat-raised-button color="primary" fxFlex="30%" [disabled]="userForm.invalid">
+                    Save<mat-icon> check_circle_outline </mat-icon>
+                </button>
+
+                    <button type="button" (click)="cancelSelection()" fxFlex="30%" mat-raised-button color="accent"> 
+                    Cancel<mat-icon> cancel </mat-icon>
+                </button>
+                </div>
+            </mat-card>
+        </form>
+    </div>
+    <br>
 </section>

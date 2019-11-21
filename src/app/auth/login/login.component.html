@@ -9,7 +9,7 @@
             <mat-card-content fxLayout="column" fxLayoutAlign="center center " fxLayoutGap="10px ">
                 <mat-form-field appearance="outline">
                     <mat-label>Email</mat-label>
-                    <input type="Email" matInput placeholder="Email" formControlName="email" required>
+                    <input type="Email" matInput placeholder="Email" formControlName="email" required autocomplete="on">
                     <mat-hint>Please enter a valid email.</mat-hint>
                     <mat-error>Invalid or missing email.</mat-error>
                 </mat-form-field>
@@ -25,7 +25,7 @@
             </mat-card-content>
 
             <mat-card-actions fxLayout="column " fxLayoutAlign="center center ">
-                <button mat-raised-button color="accent" [disabled]="loginForm.invalid">
+                <button mat-raised-button color="accent" [disabled]="loginForm.invalid" autofocus>
                     Login<mat-icon >    check_circle_outline </mat-icon>
                 </button>
             </mat-card-actions>

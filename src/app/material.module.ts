@@ -21,7 +21,15 @@ import { MatCardModule,
          MatTooltipModule,
          MatChipsModule,
          MatButtonToggleModule,
-         MatSelectModule} from '@angular/material';
+         MatSelectModule,
+         MatTableModule,
+         MatSortModule,
+         MatPaginatorModule,
+         MatProgressSpinnerModule,
+         MatSlideToggleModule,
+         MatStepperModule,
+         MatDatepickerModule,
+         MatNativeDateModule} from '@angular/material';
 
 
 @NgModule({
@@ -42,7 +50,16 @@ import { MatCardModule,
                 MatTooltipModule,
                 MatChipsModule,
                 MatButtonToggleModule,
-                MatSelectModule
+                MatSelectModule,
+                MatTableModule,
+                MatSortModule,
+                MatPaginatorModule,
+                MatProgressSpinnerModule,
+                MatSlideToggleModule,
+                MatStepperModule,
+                MatDatepickerModule,
+                MatDatepickerModule,
+                MatNativeDateModule
             ],
     exports: [
                 MatCardModule,
@@ -60,7 +77,16 @@ import { MatCardModule,
                 MatTooltipModule,
                 MatChipsModule,
                 MatButtonToggleModule,
-                MatSelectModule
+                MatSelectModule,
+                MatTableModule,
+                MatSortModule,
+                MatPaginatorModule,
+                MatProgressSpinnerModule,
+                MatSlideToggleModule,
+                MatStepperModule,
+                MatDatepickerModule,
+                MatDatepickerModule,
+                MatNativeDateModule
             ],
     providers: [],
 })

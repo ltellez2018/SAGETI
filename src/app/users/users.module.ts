@@ -6,7 +6,7 @@ import { MaterialModule } from '../material.module';
 import { NewUserComponent } from './new-user/new-user.component';
 import { RouterModule } from '@angular/router';
 import { SearchComponent } from './search/search.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     UsersRoutingModule,
     MaterialModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class UsersModule { }

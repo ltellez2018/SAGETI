@@ -10,6 +10,7 @@ const routes: Routes = [
       path: '',
       component: UsersHomeComponent,
       children: [
+            { path: '', component: SearchComponent, data: { title: 'App - Search Users' } },
             { path: 'newUser', component: NewUserComponent, data: { title: 'App - New User' } },
             { path: 'searchUser', component: SearchComponent, data: { title: 'App - Search Users' } }
      ]
