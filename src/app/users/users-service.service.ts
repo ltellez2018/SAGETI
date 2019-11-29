@@ -15,19 +15,29 @@ export class UsersServiceService {
                private snackBarService: SnackBarService) { }
 
 
+  // **************************************************** //
+  // ***         'Create new User'                    *** //
+  // **************************************************** //
   addUser(user: User) {
     this.db.collection('users').add(user)
       .then( () => this.snackBarService.openSnackBar('User saved successfully', '', 'Success'))
       .catch(error => this.snackBarService.openSnackBar(error.message, '', 'Error'));
   }
 
+  // **************************************************** //
+  // ***           'Update a User'                    *** //
+  // **************************************************** //
   updateUser(user: User) {
     this.db.collection('users').doc(user.id).set(user)
       .then( () => this.snackBarService.openSnackBar('User update successfully', '', 'Success'))
       .catch(error => this.snackBarService.openSnackBar(error.message, '', 'Error'));
   }
 
-  fetUsers() {
+  // **************************************************** //
+  // ***           'Fetching all users'               *** //
+  // **************************************************** //
+
+  fetchUsers() {
       return this.db.collection('users').snapshotChanges().pipe(
         map(  docData => {
           return docData.map( doc => {
@@ -39,6 +49,24 @@ export class UsersServiceService {
 
          }));
   }
+
+
+    // **************************************************** //
+  // ***           'Fetching all profiles'               *** //
+  // **************************************************** //
+
+  fetchProfiles() {
+    return this.db.collection('profile').snapshotChanges().pipe(
+      map(  docData => {
+        return docData.map( doc => {
+          return {
+            id: doc.payload.doc.id,
+            ...doc.payload.doc.data()
+          };
+        });
+
+       }));
+}
 
 }
 

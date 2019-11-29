@@ -6,7 +6,7 @@
 //* Components
 @import './app/auth/login/login.component.scss-theme.scss';
 @import './app/users/new-user/new-user.component-theme.scss';
-@import './app/users/search/search.component-theme.scss';
+@import './app/users/search-user/search-user.component-theme.scss';
 @mixin my-components-theme($theme) {
     @include app-login($theme);
     @include app-new-user($theme);

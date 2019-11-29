@@ -5,17 +5,17 @@
                 <mat-card-title>New User</mat-card-title>
             </mat-card-header>
 
-            <mat-card-content fxLayout="column" fxLayoutGap="-5%">
+            <mat-card-content fxLayout="column" fxLayoutGap="0%">
 
                 <div fxLayout fxLayoutGap="5%" style="padding-top: 5%">
                     <mat-form-field appearance="outline" fxFlex="50%">
                         <mat-label>First Name</mat-label>
-                        <input matInput placeholder="First name" required formControlName="firstName">
+                        <input matInput placeholder="First name" required autocomplete="off" formControlName="firstName">
                         <mat-error>Mandatory field</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="45%">
                         <mat-label>Last Name</mat-label>
-                        <input matInput placeholder="Last name" required formControlName="lastName">
+                        <input matInput placeholder="Last name" required autocomplete="off" formControlName="lastName">
                         <mat-error>Mandatory field</mat-error>
                     </mat-form-field>
                 </div>
@@ -24,7 +24,7 @@
                 <div class="divTest2" fxLayout>
                     <mat-form-field appearance="outline" fxFlex="50%">
                         <mat-label>Name(s)</mat-label>
-                        <input matInput placeholder="Name(s)" required formControlName="name">
+                        <input matInput placeholder="Name(s)" required autocomplete="off" formControlName="name">
                         <mat-error>Mandatory field</mat-error>
                     </mat-form-field>
                 </div>
@@ -32,12 +32,12 @@
                 <div fxLayout fxLayoutGap="5%">
                     <mat-form-field appearance="outline" fxFlex="70%">
                         <mat-label>Email</mat-label>
-                        <input matInput placeholder="Email" required formControlName="email">
+                        <input matInput placeholder="Email" type="email" required autocomplete="off" formControlName="email">
                         <mat-error>Mandatory field</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="25%">
                         <mat-label>Key</mat-label>
-                        <input matInput placeholder="Key" required formControlName="key">
+                        <input matInput placeholder="Key" required autocomplete="off" formControlName="key">
                         <mat-error>Mandatory field</mat-error>
                     </mat-form-field>
                 </div>
@@ -45,22 +45,29 @@
                 <div fxLayout>
                     <mat-form-field fxFlex="70%" appearance="outline">
                         <mat-label>Profile</mat-label>
-                        <mat-select required formControlName="profile">
-                            <mat-option value="Bussness Administrator">Bussness Administrator</mat-option>
-                            <mat-option value="System Administrator">System Administrator</mat-option>
-                            <mat-option value="User">User</mat-option>
-                            <mat-option value="Provider">Provider</mat-option>
+                        <mat-select required formControlName="profile" (selectionChange)="selectProfile($event)">
+                            <mat-option *ngFor="let profile of profiles" [value]="profile.name">
+                                {{profile.name}}
+                            </mat-option>
                         </mat-select>
                         <mat-error>Mandatory field</mat-error>
                     </mat-form-field>
                 </div>
+
+                <div fxLayout *ngIf="profileSelected">
+                    <mat-form-field fxFlex="100%" appearance="outline">
+                        <mat-label> <strong>Profile description</strong></mat-label>
+                        <textarea matTextareaAutosize disabled matInput [value]="profileSelected.description" placeholder="Profile description"> </textarea>
+                    </mat-form-field>
+                </div>
+
                 <mat-divider mat-inset></mat-divider>
             </mat-card-content>
             <div class="bt-fotter" fxLayout fxLayoutGap="5%">
-                <button mat-raised-button color="primary" fxFlex="50%" [disabled]="userForm.invalid">
+                <button type="submit" mat-raised-button color="primary" fxFlex="50%" [disabled]="userForm.invalid">
                     Save<mat-icon >    check_circle_outline </mat-icon>
                 </button>
-                <button type="reset" mat-raised-button color="accent" fxFlex="50%">
+                <button type="button" (click)="resetForm()" mat-raised-button color="accent" fxFlex="50%">
                         Reset<mat-icon>    cancel </mat-icon>
                     </button>
             </div>

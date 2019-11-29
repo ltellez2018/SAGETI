@@ -5,7 +5,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import { MaterialModule } from '../material.module';
 import { NewUserComponent } from './new-user/new-user.component';
 import { RouterModule } from '@angular/router';
-import { SearchComponent } from './search/search.component';
+import { SearchUserComponent } from './search-user/search-user.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
@@ -14,7 +14,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   declarations: [
     UsersHomeComponent,
     NewUserComponent,
-    SearchComponent
+    SearchUserComponent
   ],
   imports: [
     CommonModule,

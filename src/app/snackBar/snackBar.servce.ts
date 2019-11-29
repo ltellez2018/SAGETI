@@ -8,17 +8,6 @@ import { SnackbarComponent } from './snackbar.component';
 })
 export class SnackBarService {
 
- /*  constructor(private snackbar: MatSnackBar) {}
-
-  showSnackbar( message: string, action: string, duration: number ) {
-    this.snackbar.open(message, action, {
-      duration,
-      verticalPosition: 'top',
-      horizontalPosition: 'center'
-    });
-  } */
-
-
   constructor(private snackBar: MatSnackBar) {}
 
    openSnackBar(message: string, action: string, type: string) {
