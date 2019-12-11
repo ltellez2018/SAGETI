@@ -36,8 +36,12 @@ export class EventServiceService {
   // **************************************************** //
 
   addEvent(event: EventData) {
-    this.db.collection('events').add(event)
-    .then( () => this.snackBarService.openSnackBar('Event adding successfully', '', 'Success'))
+    return this.db.collection('events').add(event)
+    /* .then( () => this.snackBarService.openSnackBar('Event adding successfully', '', 'Success')) */
+    .then( data => {
+      event.id = data.id;    
+      this.snackBarService.openSnackBar('Event adding successfully', '', 'Success');
+    })
     .catch(error => this.snackBarService.openSnackBar(error.message, '', 'Error'));
   }
 

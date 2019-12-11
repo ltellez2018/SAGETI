@@ -11,4 +11,5 @@ export class EventData {
     cost: number;
     status: string;
     id?: string;
+    urlDocument?: string;
 }

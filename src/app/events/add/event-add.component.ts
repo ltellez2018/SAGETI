@@ -6,6 +6,7 @@ import { MenuData } from '../data/menu-data';
 import { EventServiceService } from '../event-service.service';
 import { MatDialog, MatStepper } from '@angular/material';
 import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
+import { EventData } from '../data/event-data';
 
 @Component({
   selector: 'app-event-add',
@@ -19,7 +20,7 @@ export class EventAddComponent implements OnInit {
   menuSelected: MenuData;
   menus: MenuData [] = [];
   costTotal = 0;
-  nameEvent = "";
+  registerEvent: EventData;
 
   constructor(private formBuilder: FormBuilder, public eventServiceService: EventServiceService,
               public dialog: MatDialog  ) {}
@@ -40,7 +41,7 @@ export class EventAddComponent implements OnInit {
 
     // * Second Form
     this.aproveFormGroup = this.formBuilder.group({
-      checked: [false,Validators.required]
+      checked: [,Validators.required]
     });
 
     // * Load menus
@@ -81,21 +82,15 @@ export class EventAddComponent implements OnInit {
   // **************************************************** //
     
     onSubmit() {
-      this.eventServiceService.addEvent({
-       title:   this.registerFormGroup.value.title,
-       subject: this.registerFormGroup.value.subject,
-       kind:    this.registerFormGroup.value.kind,
-       date:    this.registerFormGroup.value.date,
-       startE:  this.registerFormGroup.value.startE,
-       finishE: this.registerFormGroup.value.finishE,
-       place:   this.registerFormGroup.value.place,
-       menu:    this.registerFormGroup.value.menu,
-       quorum:  this.registerFormGroup.value.quorum,
-       status: "started",
-       cost:    this.costTotal
-      }); 
-      this.nameEvent = this.registerFormGroup.value.title;
+
+      this.registerEvent = {
+        ...this.registerFormGroup.value,
+        status: "started",
+        cost: this.costTotal
+       }
+      const id = this.eventServiceService.addEvent(this.registerEvent); 
     }
+
 
 
 // **************************************************** //
@@ -121,6 +116,26 @@ export class EventAddComponent implements OnInit {
           console.log("User not has confirmed the event");
         }    
       });  
+    }
+
+    // **************************************************** //
+    // ***        'Canceling event'                     *** //
+    // **************************************************** //
+    
+    cancelEvent(stepper: MatStepper){
+      console.log('Canceling event...');
+      stepper.reset()
+      
+
+    }
+
+    // **************************************************** //
+    // ***            'Aproving event'                  *** //
+    // **************************************************** //
+    
+
+    aproveEvent (stepper: MatStepper) {
+      stepper.next();
     }
 
 }
