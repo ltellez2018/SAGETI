@@ -1,8 +1,17 @@
 <mat-nav-list>
+    <a mat-list-item routerLink="/dashboard/users" (click)="onClose()">
+        <mat-icon>people</mat-icon>
+        <span class="nav-caption">Users</span>
+    </a>
+    <a mat-list-item routerLink="/dashboard/events" (click)="onClose()">
+        <mat-icon>calendar_today</mat-icon>
+        <span class="nav-caption">Events</span>
+    </a>
     <mat-list-item>
-        <button mat-icon-button (click)="onLogout()">
-      <mat-icon>eject</mat-icon>
-      <span class="nav-caption">Logout</span>
-    </button>
+        <a mat-list-item routerLink="/dashboard/events" (click)="onLogout()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span class="nav-caption">Logout</span>
+        </a>
     </mat-list-item>
+
 </mat-nav-list>

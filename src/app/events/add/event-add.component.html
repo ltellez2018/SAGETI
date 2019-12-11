@@ -1,105 +1,312 @@
-<mat-horizontal-stepper labelPosition="bottom" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>General Information</ng-template>
+<!-- <mat-horizontal-stepper labelPosition="bottom" #stepper linear> -->
+<mat-horizontal-stepper labelPosition="bottom"  >
+    <mat-step [stepControl]="registerFormGroup" editable="false">
+        <form [formGroup]="registerFormGroup" >
+            <ng-template matStepLabel>Register a new event</ng-template>
 
             <mat-card>
+                <mat-card-header>
+                    <mat-card-subtitle>
+                        General Information
+                    </mat-card-subtitle>
+                </mat-card-header>
                 <mat-card-content>
 
-                    <div fxLayout="row" fxLayoutGap="4%">
-                        <mat-form-field fxFlex="48%">
+                    <div fxLayout="row " fxLayoutGap="4% ">
+                        <mat-form-field fxFlex="48% ">
                             <mat-label>Title</mat-label>
-                            <input matInput placeholder="Title" formControlName="title" required>
+                            <input type="text " matInput autocomplete="off" placeholder="Title" formControlName="title" required>
                             <mat-hint><strong>Please enter a name</strong></mat-hint>
                             <mat-error>Mandatory field</mat-error>
                         </mat-form-field>
 
-                        <mat-form-field fxFlex="48%">
+                        <mat-form-field fxFlex="48% ">
                             <mat-label>Subjet</mat-label>
-                            <input matInput placeholder="Subject" #subject maxlength="100" formControlName="subject" required>
-                            <mat-hint align="start"><strong>Description</strong> </mat-hint>
-                            <mat-hint align="end">{{subject.value.length}} / 100</mat-hint>
+                            <input ype="text " matInput autocomplete="off" placeholder="Subject " #subject maxlength="100 " formControlName="subject" required>
+                            <mat-hint align="start "><strong>Description</strong> </mat-hint>
+                            <mat-hint align="end ">{{subject.value.length}} / 100</mat-hint>
                             <mat-error>Mandatory field</mat-error>
                         </mat-form-field>
                     </div>
                     <br>
 
-                    <div fxLayout="row" fxLayoutGap="4%">
+                    <div fxLayout="row " fxLayoutGap="4% ">
 
-                        <div fxFlex="48%" fxLayoutGap="4%">
-                            <mat-form-field fxFlex="48%">
+                        <div fxFlex="48% " fxLayoutGap="4% ">
+                            <mat-form-field fxFlex="48% ">
                                 <mat-label>Kind of event</mat-label>
-                                <mat-select required>
-                                    <mat-option value="Birthday">Birthday</mat-option>
-                                    <mat-option value="Ceremony">Ceremony</mat-option>
-                                    <mat-option value="Kick off">Kick off</mat-option>
-                                    <mat-option value="Project">Project</mat-option>
-                                    <mat-option value="Other">Other</mat-option>
+                                <mat-select required formControlName="kind">
+                                    <mat-option value="Birthday ">Birthday</mat-option>
+                                    <mat-option value="Ceremony ">Ceremony</mat-option>
+                                    <mat-option value="Kick off ">Kick off</mat-option>
+                                    <mat-option value="Project ">Project</mat-option>
+                                    <mat-option value="Other ">Other</mat-option>
                                 </mat-select>
                                 <mat-error>Mandatory field</mat-error>
                             </mat-form-field>
 
-                            <mat-form-field fxFlex="48%">
-                                <input matInput #message maxlength="25" placeholder="What kind of events you want?" required>
-                                <mat-hint align="start"><strong>Just name</strong> </mat-hint>
-                                <mat-hint align="end">{{message.value.length}} / 25</mat-hint>
+                            <mat-form-field fxFlex="48% ">
+                                <input matInput autocomplete="off" [matDatepicker]="picker " placeholder="Choose a date " formControlName="date">
+                                <mat-datepicker-toggle matSuffix [for]="picker "></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
                             </mat-form-field>
                         </div>
 
-                        <div fxFlex="48%" fxLayoutGap="4%">
-                            <mat-form-field fxFlex="46%">
-                                <input matInput [matDatepicker]="picker" placeholder="Celebration Day " required>
-                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                <mat-datepicker #picker></mat-datepicker>
-                            </mat-form-field>
+                        <div fxFlex="48% " fxLayoutGap="4% ">
 
-                            <mat-form-field fxFlex="23%">
+                            <mat-form-field fxFlex="48% ">
                                 <mat-label>Starting time</mat-label>
-                                <input matInput placeholder="Title" autocomplete="off" placeholder="Starting time " (click)="onClicTimeStart()" [type]="typeInputTimeStart" required>
+                                <input matInput placeholder="Title " autocomplete="off " formControlName="startE" placeholder="Starting time " type="time" required>
                                 <mat-error>Mandatory field</mat-error>
                             </mat-form-field>
 
-                            <mat-form-field fxFlex="23%">
+                            <mat-form-field fxFlex="48% ">
                                 <mat-label>Ending time</mat-label>
-                                <input matInput placeholder="Title" autocomplete="off" placeholder="Ending time  " (click)="onClicTimeEnding()" [type]="typeInputTimeEnding" required>
+                                <input matInput placeholder="Title " autocomplete="off " formControlName="finishE" placeholder="Ending time " type="time" required>
                                 <mat-error>Mandatory field</mat-error>
                             </mat-form-field>
                         </div>
                     </div>
                     <br>
-                    <div fxLayout="row" fxLayoutGap="4%">
-                        <mat-form-field fxFlex="48%">
+                    <div fxLayout="row " fxLayoutGap="4% ">
+                        <mat-form-field fxFlex="48% ">
                             <mat-label>Celebretaion Place</mat-label>
-                            <mat-select required>
-                                <mat-option value="Bussness Administrator">CDMX</mat-option>
-                                <mat-option value="New York">New York</mat-option>
-                                <mat-option value="Paris">Paris</mat-option>
-                                <mat-option value="London">London</mat-option>
-                                <mat-option value="Tokio">Tokio</mat-option>
+                            <mat-select required formControlName="place">
+                                <mat-option value="Bussness Administrator ">CDMX</mat-option>
+                                <mat-option value="New York ">New York</mat-option>
+                                <mat-option value="Paris ">Paris</mat-option>
+                                <mat-option value="London ">London</mat-option>
+                                <mat-option value="Tokio ">Tokio</mat-option>
                             </mat-select>
                             <mat-error>Mandatory field</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <br>
+                    <div fxLayout="row " fxLayoutGap="4% ">
+
+                        <div fxFlex="48% " fxLayoutGap="4% ">
+                            <mat-form-field fxFlex="48% ">
+                                <mat-label>Menu</mat-label>
+                                <mat-select required formControlName="menu" (selectionChange)="selectMenu($event)">
+                                    <mat-option *ngFor="let menu of menus" [value]="menu.name">
+                                        {{menu.name}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>Mandatory field</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="48%" *ngIf="menuSelected">
+                                <mat-label>Menu description</mat-label>
+                                <textarea matTextareaAutosize disabled matInput [value]="menuSelected.description" placeholder="Menu description"> </textarea>
+                            </mat-form-field>
+
+                        </div>
+
+                        <div fxFlex="48% " fxLayoutGap="4% ">
+
+
+                            <mat-form-field fxFlex="48% ">
+                                <mat-label>Quorum</mat-label>
+                                <input matInput placeholder="Title " formControlName='quorum' (keyup)="calPrice($event)" autocomplete="off" placeholder="How many person... " type="number" required>
+                                <mat-error>Mandatory field</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="48%" *ngIf="menuSelected">
+                                <mat-label>Price by person</mat-label>
+                                <textarea matTextareaAutosize disabled matInput placeholder="Price by Person " [value]="menuSelected.cost"> </textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <br>
+                    <div fxLayout="row " fxLayoutGap="4% " *ngIf="menuSelected">
+                        <mat-form-field fxFlex="48% ">
+                            <mat-label>Total Price</mat-label>
+                            <input matInput placeholder="Total Price " disabled [value]="costTotal">
                         </mat-form-field>
                     </div>
 
 
                 </mat-card-content>
                 <mat-divider></mat-divider>
-                <mat-card-actions>
-                    <button mat-raised-button color="accent" matStepperNext>Next Step</button>
+                <mat-card-actions fxLayout="row" fxLayoutAlign="space-between start ">
+                    <button mat-raised-button color="accent" (click)="stepper.reset() ">Reset</button>
+                    <!-- <button  [disabled]="registerFormGroup.invalid"  (click)="onDialog(stepper)" mat-raised-button color="primary">Next Step</button> -->
+                    <button  matStepperNext mat-raised-button color="primary">Next Step</button>
+
+
                 </mat-card-actions>
             </mat-card>
         </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup ">
-        <form [formGroup]="secondFormGroup ">
-            <ng-template matStepLabel>Place to celebrate</ng-template>
-            <mat-form-field>
-                <input matInput placeholder="Address" formControlName="secondCtrl" required>
-            </mat-form-field>
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
-            </div>
+    <mat-step [stepControl]="aproveFormGroup ">
+        <form [formGroup]="aproveFormGroup ">
+            <ng-template matStepLabel>Verify your approval</ng-template>
+            <mat-card>
+
+                <mat-card-content>
+
+                    <div fxLayout="row " fxLayoutGap="4% ">
+                        <div  fxFlex="48% ">
+                            <h4 fxLayoutAlign="center center" mat-subheader>Summary</h4> 
+                        </div>
+                        <div  fxFlex="48% ">
+                            <h4 fxLayoutAlign="center center" mat-subheader>Conditions</h4> 
+                            <mat-list dense>
+                                    <mat-list-item>
+                                            <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+                                            <p>The budget review has been carried out and it was determined that it is possible to schedule your event.</p>                      
+                                    </mat-list-item>
+                                    <mat-list-item>
+                                            <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+                                            <p>The amount will be charged to your cost center within 24 hours of acceptance.</p>                      
+                                    </mat-list-item>
+                                    <mat-list-item>
+                                            <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+                                            <p>The event cannot be canceled 48 hours before its celebration.</p>                      
+                                    </mat-list-item>
+                                    <mat-list-item>
+                                            <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+                                            <p>The provider for the management of the event menu will be assigned by the corresponding area..</p>                      
+                                    </mat-list-item>
+                                    <mat-checkbox formControlName='checked'>I accept the conditions</mat-checkbox>
+                            </mat-list> 
+                        </div>
+                    </div>
+                      
+                       <!--  <section fxLayoutAlign="center center" fxLayout="column" style="width: 350px; background-color: bisque;">
+                                <h4  mat-subheader>Summary</h4>   
+                                <div fxLayout="column" fxflex="100%">
+                                        <mat-form-field >
+                                            <mat-label>Title</mat-label>
+                                            <input type="text " matInput autocomplete="off" placeholder="Title">
+                                        </mat-form-field>
+                
+                                        <mat-form-field>
+                                            <mat-label>Subjet</mat-label>
+                                            <input ype="text " matInput autocomplete="off" placeholder="Subject ">                                          
+                                        </mat-form-field>
+                                    </div>
+                        </section>
+                    
+                        <div>
+                        
+                                    <br>
+                
+                                    <div fxLayout="row " fxLayoutGap="4% ">
+                
+                                        <div fxFlex="48% " fxLayoutGap="4% ">
+                                            <mat-form-field fxFlex="48% ">
+                                                <mat-label>Kind of event</mat-label>
+                                                <input ype="text " matInput autocomplete="off" placeholder="Subject ">                                                 
+                                            </mat-form-field>
+                
+                                            <mat-form-field fxFlex="48% ">
+                                                    <mat-label>Kind of event</mat-label>
+                                                    <input ype="text " matInput autocomplete="off" placeholder="Subject ">                                                 
+                                            </mat-form-field>
+                                        </div>
+                
+                                        <div fxFlex="48% " fxLayoutGap="4% ">
+                
+                                            <mat-form-field fxFlex="48% ">
+                                                <mat-label>Starting time</mat-label>
+                                                <input matInput placeholder="Starting time " >
+                                            </mat-form-field>
+                
+                                            <mat-form-field fxFlex="48% ">
+                                                <mat-label>Ending time</mat-label>
+                                                <input matInput  placeholder="Ending time ">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div fxLayout="row " fxLayoutGap="4% ">
+                                        <mat-form-field fxFlex="48% ">
+                                            <mat-label>Celebretaion Place</mat-label>
+                                            <input matInput  placeholder="Ending time ">
+                                        </mat-form-field>
+                                    </div>
+                                    <br>
+                                    <div fxLayout="row " fxLayoutGap="4% ">
+                
+                                        <div fxFlex="48% " fxLayoutGap="4% ">
+                                            <mat-form-field fxFlex="48% ">
+                                                <mat-label>Menu</mat-label>
+                                                <input matInput  placeholder="Ending time ">
+                                            </mat-form-field>
+                
+                                            <mat-form-field fxFlex="48%" *ngIf="menuSelected">
+                                                <mat-label>Menu description</mat-label>
+                                                <textarea matTextareaAutosize disabled matInput [value]="menuSelected.description" placeholder="Menu description"> </textarea>
+                                            </mat-form-field>
+                
+                                        </div>
+                
+                                        <div fxFlex="48% " fxLayoutGap="4% ">
+                
+                
+                                            <mat-form-field fxFlex="48% ">
+                                                <mat-label>Quorum</mat-label>
+                                                <input matInput placeholder="Title " placeholder="How many person... " >
+                                                
+                                            </mat-form-field>
+                
+                                            <mat-form-field fxFlex="48%" >
+                                                <mat-label>Price by person</mat-label>
+                                                <textarea matTextareaAutosize disabled matInput placeholder="Price by Person "> </textarea>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div fxLayout="row " fxLayoutGap="4% ">
+                                        <mat-form-field fxFlex="48% ">
+                                            <mat-label>Total Price</mat-label>
+                                            <input matInput placeholder="Total Price " disabled >
+                                        </mat-form-field>
+                                    </div>
+                
+                        </div>
+                 
+                        <div>
+                            <p>Name: </p> Event Name
+                        </div>
+                        
+                        <div fxLayout="column" fxLayoutAlign="center center">
+                            <h4 mat-subheader>Conditions</h4> 
+
+                            <mat-list dense>
+                                    <mat-list-item>
+                                            <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+                                            <p>The budget review has been carried out and it was determined that it is possible to schedule your event.</p>                      
+                                    </mat-list-item>
+                                    <mat-list-item>
+                                            <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+                                            <p>The amount will be charged to your cost center within 24 hours of acceptance.</p>                      
+                                    </mat-list-item>
+                                    <mat-list-item>
+                                            <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+                                            <p>The event cannot be canceled 48 hours before its celebration.</p>                      
+                                    </mat-list-item>
+                                    <mat-list-item>
+                                            <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+                                            <p>The provider for the management of the event menu will be assigned by the corresponding area..</p>                      
+                                    </mat-list-item>
+                            </mat-list> 
+                        </div>
+                        
+                    
+                   
+                        <mat-checkbox formControlName='checked'>I accept the conditions</mat-checkbox>
+                   
+ -->
+                </mat-card-content>
+                <mat-divider></mat-divider>
+                <mat-card-actions fxLayout="row " fxLayoutAlign="space-between start ">
+                     <button mat-raised-button color="accent"  >Cancel</button>
+                     <button mat-raised-button color="primary"  >Save</button>
+                </mat-card-actions>
+
+            </mat-card>
         </form>
     </mat-step>
     <mat-step>

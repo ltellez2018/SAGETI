@@ -1,9 +1,10 @@
-a {
-    text-decoration: none;
-    color: white;
+.navigation-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-a:hover,
-a:active {
-    color: lightgray;
+.nav-caption {
+    display: block;
+    padding-left: 6px;
 }

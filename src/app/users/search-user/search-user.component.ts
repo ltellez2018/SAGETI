@@ -10,10 +10,10 @@ import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  templateUrl: './search-user.component.html',
+  styleUrls: ['./search-user.component.scss']
 })
-export class SearchComponent implements OnInit, AfterViewInit {
+export class SearchUserComponent implements OnInit, AfterViewInit {
 
   /* Mat-table Components */
   displayedColumns = ['firstName', 'lastName', 'name', 'email', 'key', 'profile', 'date'];
@@ -34,7 +34,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   constructor(private usersService: UsersServiceService) { }
 
   ngOnInit() {
-    this.usersService.fetUsers().subscribe((users: any) => {
+    this.usersService.fetchUsers().subscribe((users: any) => {
       this.dataSource.data = users;
       this.isloading = false;
       this.isEditable = false;

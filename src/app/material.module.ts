@@ -29,7 +29,10 @@ import { MatCardModule,
          MatSlideToggleModule,
          MatStepperModule,
          MatDatepickerModule,
-         MatNativeDateModule} from '@angular/material';
+         MatNativeDateModule,
+         MatDialogModule,
+         MatCheckboxModule,
+        } from '@angular/material';
 
 
 @NgModule({
@@ -59,7 +62,10 @@ import { MatCardModule,
                 MatStepperModule,
                 MatDatepickerModule,
                 MatDatepickerModule,
-                MatNativeDateModule
+                MatNativeDateModule,
+                MatDialogModule,
+                MatCheckboxModule,
+                
             ],
     exports: [
                 MatCardModule,
@@ -86,7 +92,9 @@ import { MatCardModule,
                 MatStepperModule,
                 MatDatepickerModule,
                 MatDatepickerModule,
-                MatNativeDateModule
+                MatNativeDateModule,
+                MatDialogModule,
+                MatCheckboxModule
             ],
     providers: [],
 })
