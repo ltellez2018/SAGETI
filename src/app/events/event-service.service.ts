@@ -15,10 +15,26 @@ export class EventServiceService {
 
 
   // **************************************************** //
-  // ***       'Fetcing all menus'                    *** //
+  // ***       'Fetcing all events'                    *** //
   // **************************************************** //
 
   fetchAllEvents() {
+    return this.db.collection('events').snapshotChanges().pipe(
+      map(snaps => {
+            return snaps.map( snap => {
+              return {
+                ...snap.payload.doc.data(),
+                id: snap.payload.doc.id
+              };
+            });
+      }));
+  }
+
+  // **************************************************** //
+  // ***       'Fetcing all menus'                    *** //
+  // **************************************************** //
+
+  fetchAllMenus() {
     return this.db.collection('menus').snapshotChanges().pipe(
       map(snaps => {
             return snaps.map( snap => {
@@ -28,7 +44,7 @@ export class EventServiceService {
               };
             });
       }));
-}
+  }
 
 
   // **************************************************** //
@@ -43,6 +59,17 @@ export class EventServiceService {
       this.snackBarService.openSnackBar('Event adding successfully', '', 'Success');
     })
     .catch(error => this.snackBarService.openSnackBar(error.message, '', 'Error'));
+  }
+
+// **************************************************** //
+// ***        'Updating status event'               *** //
+// **************************************************** //
+
+  updateEvent(eventId: string, status: Partial<EventData>){
+    this.db.doc(`/events/${eventId}`).update(status)
+    .then( () => this.snackBarService.openSnackBar('Event updated successfully', '', 'Success'))
+    .catch(error => this.snackBarService.openSnackBar(error.message, '', 'Error'));
+
   }
 
 }

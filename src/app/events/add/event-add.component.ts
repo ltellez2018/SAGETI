@@ -45,21 +45,22 @@ export class EventAddComponent implements OnInit {
     });
 
     // * Load menus
-    this.fetchEvents();
+    this.fetchMenus();
   }
 
   // **************************************************** //
-  // ***         'Fetchng  all events'                *** //
+  // ***         'Fetchng  all menus'                *** //
   // **************************************************** //
   
-  fetchEvents() {
-      this.eventServiceService.fetchAllEvents().subscribe(
+  fetchMenus() {
+      this.eventServiceService.fetchAllMenus().subscribe(
           (menus: MenuData []) => this.menus = menus);
   }
 
    // **************************************************** //
-   // ***       'Select a Menu'                         *** //
+   // ***       'Set selected  Menu'                   *** //
    // **************************************************** //
+
    selectMenu(event: any) {
     this.menuSelected = null;
     this.menuSelected =  this.menus.find( (menu: MenuData) => menu.name === event.source.value);
@@ -69,7 +70,6 @@ export class EventAddComponent implements OnInit {
   // ***     'Calculating the total price'            *** //
   // **************************************************** //
   
-
   calPrice(event: any) {
       if (this.menuSelected !== null) {
         this.costTotal = 0;
@@ -124,17 +124,17 @@ export class EventAddComponent implements OnInit {
     
     cancelEvent(stepper: MatStepper){
       console.log('Canceling event...');
+      this.eventServiceService.updateEvent(this.registerEvent.id,{status: 'declined'})
       stepper.reset()
-      
-
     }
 
     // **************************************************** //
     // ***            'Aproving event'                  *** //
     // **************************************************** //
     
-
     aproveEvent (stepper: MatStepper) {
+      console.log('Canceling event...');
+      this.eventServiceService.updateEvent(this.registerEvent.id,{status: 'approved'})
       stepper.next();
     }
 

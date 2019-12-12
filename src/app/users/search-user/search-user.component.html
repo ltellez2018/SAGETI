@@ -64,7 +64,7 @@
                         <td mat-cell class="mat-cell-style" *matCellDef="let element">{{ element.date.toDate() | date }}</td>
                     </ng-container>
                     <tr mat-header-row *matHeaderRowDef="displayedColumns" style="scroll-padding-bottom: 10px;"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)"></tr>>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)"></tr>
                 </table>
             </mat-card-content>
 
