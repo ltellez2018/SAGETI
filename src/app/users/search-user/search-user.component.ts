@@ -18,7 +18,6 @@ export class SearchUserComponent implements OnInit, AfterViewInit {
   /* Mat-table Components */
   displayedColumns = ['firstName', 'lastName', 'name', 'email', 'key', 'profile', 'date'];
   dataSource = new MatTableDataSource<User>();
-  @ViewChild('scrollBottom', {static: false}) scrollBottom: ElementRef;
   isloading = true;
   user: User = null;
   userForm: FormGroup;
@@ -55,8 +54,6 @@ export class SearchUserComponent implements OnInit, AfterViewInit {
     if (this.isEditable) {
       this.user = user;
       this.initForm();
-      this.scrollBottom.nativeElement.scrollTop = this.scrollBottom.nativeElement.scrollHeight;
-      console.log( this.scrollBottom.nativeElement.scrollHeight  );
     }
 
   }
